@@ -27,6 +27,9 @@ def makeReturn(items):
 
 def get_download_link(url: str) -> str:
     session: HTMLSession = HTMLSession()
+    header = "https://"
+    if not header in url:
+        url = f"{header}{url}"
     r: HTMLResponse = session.get(f"https://sci-hub.tw/{url}")
     onclick: str = r.html.xpath("//div[@id='buttons']//li/a/@onclick",
                                 first=True)
