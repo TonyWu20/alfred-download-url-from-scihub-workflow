@@ -9,6 +9,10 @@ Directly return pdf download url from sci-hub results.
 - Python 3
 - [requests-html](https://github.com/psf/requests-html.git)
 
+## Installations
+
+Download the workflow file and import to alfred.
+
 ## Setup
 
 You might need to change the python3 executable path in the setting of Script Filter of the alfred workflow according to your settings.
