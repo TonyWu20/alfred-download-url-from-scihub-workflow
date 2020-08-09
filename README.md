@@ -1,4 +1,4 @@
-# alfred-download-url-from-sci-hub-workflow
+# alfred-download-url-from-scihub-workflow
 
 ## Features
 
@@ -8,6 +8,14 @@ Directly return pdf download url from sci-hub results.
 
 - Python 3
 - [requests-html](https://github.com/psf/requests-html.git)
+
+  To install requests-html, run this in command line
+
+        $ pip3 install requests-html
+
+  Or
+    
+   \$ pip install requests-html
 
 ## Installations
 
@@ -21,6 +29,8 @@ The current setting is "/usr/local/opt/python@3.8/bin/python3". You should run "
 ## Usage
 
 Enter "shd" to trigger the workflow, paste the url of the research paper, done! You will get the url to download the paper provided from sci-hub.
+
+Holding **shift** will let you open the pdf directly in your browser.
 
 ## Acknowledgement
 
