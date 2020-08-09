@@ -14,8 +14,8 @@ Directly return pdf download url from sci-hub results.
         $ pip3 install requests-html
 
   Or
-    
-   \$ pip install requests-html
+
+        $ pip install requests-html
 
 ## Installations
 
