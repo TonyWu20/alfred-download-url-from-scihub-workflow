@@ -33,8 +33,10 @@ def get_download_link(url: str) -> str:
     r: HTMLResponse = session.get(f"https://sci-hub.tw/{url}")
     onclick: str = r.html.xpath("//div[@id='buttons']//li/a/@onclick",
                                 first=True)
-    link: re.Pattern = re.compile(r"'(\S+)'")
-    download_url: str = "https:" + link.search(onclick).group(1)
+    link: str = re.search(r"'(\S+)'", onclick).group(1)
+    if not header in link:
+        download_url: str = "https:" + link
+    download_url = link
     return download_url
 
 
