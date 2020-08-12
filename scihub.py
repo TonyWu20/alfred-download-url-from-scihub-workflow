@@ -27,14 +27,17 @@ def makeReturn(items):
 
 def get_download_link(url: str) -> str:
     session: HTMLSession = HTMLSession()
-    header = "https://"
+    header = "https:"
     if not header in url:
-        url = f"{header}{url}"
+        url = f"{header}//{url}"
     r: HTMLResponse = session.get(f"https://sci-hub.tw/{url}")
     onclick: str = r.html.xpath("//div[@id='buttons']//li/a/@onclick",
                                 first=True)
-    link: re.Pattern = re.compile(r"'(\S+)'")
-    download_url: str = "https:" + link.search(onclick).group(1)
+    link: str = re.search(r"'(\S+)'", onclick).group(1)
+    if not header in link:
+        download_url: str = "https:" + link
+    else:
+        download_url = link
     return download_url
 
 
