@@ -3,7 +3,7 @@
 ## Features
 
 1. Directly return pdf download url from sci-hub results.
-1. **Make use of the external trigger of alfred workflow to cooperate with the google scholar workflow output.**
+1. **Make use of the external trigger of alfred workflow to cooperate with the [google scholar workflow output](https://github.com/TonyWu20/alfred-google-scholar).**
 
 ## Requirements
 
