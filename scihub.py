@@ -1,11 +1,15 @@
+"""
+Retrieve pdf download url
+"""
 import re
 import json
-import os
 from sys import argv, stdout
 from requests_html import HTMLSession, HTMLResponse
 
 
-def makeItem(query, url, title, subtitle):
+def makeItem(query: str, url: str, title: str, subtitle: str) -> dict:
+    """Format item output for alfred
+    """
     icon = "ravenround.gif"
     item = {
         'uid': url,
@@ -20,28 +24,40 @@ def makeItem(query, url, title, subtitle):
     return item
 
 
-def makeReturn(items):
+def makeReturn(items: dict) -> dict:
+    """
+    Format output for alfred
+    """
     out = {'items': items}
     return out
 
 
 def get_download_link(url: str) -> str:
+    """Return link
+    Args:
+        url (str): passed url
+    Return:
+        url string
+    """
     session: HTMLSession = HTMLSession()
-    header = "https:"
+    header = "https://"
     if not header in url:
-        url = f"{header}//{url}"
-    r: HTMLResponse = session.get(f"https://sci-hub.tw/{url}")
+        url = f"{header}{url}"
+    scihub_suf = "do"
+    r: HTMLResponse = session.get(f"https://sci-hub.{scihub_suf}/{url}")
     onclick: str = r.html.xpath("//div[@id='buttons']//li/a/@onclick",
                                 first=True)
     link: str = re.search(r"'(\S+)'", onclick).group(1)
     if not header in link:
-        download_url: str = "https:" + link
+        return_url: str = "https:" + link
     else:
-        download_url = link
-    return download_url
+        return_url = link
+    return return_url
 
 
 def main():
+    """Main function for workflow
+    """
     arg_c = len(argv)
     if arg_c <= 1:
         return makeReturn([])
