@@ -43,7 +43,7 @@ def get_download_link(url: str) -> str:
     header = "https://"
     if not header in url:
         url = f"{header}{url}"
-    scihub_suf = "do"
+    scihub_suf = "se"
     r: HTMLResponse = session.get(f"https://sci-hub.{scihub_suf}/{url}")
     onclick: str = r.html.xpath("//div[@id='buttons']//li/a/@onclick",
                                 first=True)
